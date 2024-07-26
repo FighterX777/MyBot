@@ -1,9 +1,6 @@
-// Import the discord.js library
-const Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
 
-// Create a new Discord client
-const client = new Discord.Client();
-
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 // Get the bot token from an environment variable
 const token = process.env.DISCORD_BOT_TOKEN;
 
