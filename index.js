@@ -1,11 +1,9 @@
-// Import the discord.js library
-const Discord = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 
-// Create a new Discord client with intents
-const client = new Discord.Client({
+const client = new Client({
   intents: [
-    Discord.Intents.FLAGS.GUILDS,
-    Discord.Intents.FLAGS.GUILD_MESSAGES,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
   ],
 });
 
