@@ -1,6 +1,14 @@
-const { Client, Intents } = require('discord.js');
+// Import the discord.js library
+const Discord = require('discord.js');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+// Create a new Discord client with intents
+const client = new Discord.Client({
+  intents: [
+    Discord.Intents.FLAGS.GUILDS,
+    Discord.Intents.FLAGS.GUILD_MESSAGES,
+  ],
+});
+
 // Get the bot token from an environment variable
 const token = process.env.DISCORD_BOT_TOKEN;
 
@@ -13,7 +21,7 @@ client.on('ready', () => {
 });
 
 // Event listener for messages
-client.on('message', (message) => {
+client.on('messageCreate', (message) => {
   // Check if the message starts with the prefix
   if (message.content.startsWith(prefix)) {
     // Get the command
@@ -29,6 +37,12 @@ client.on('message', (message) => {
     }
   }
 });
+
+// Check if the token is set
+if (!token) {
+  console.error('DISCORD_BOT_TOKEN environment variable is not set');
+  process.exit(1);
+}
 
 // Login to Discord
 client.login(token);
